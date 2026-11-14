@@ -96,7 +96,7 @@ Le projet couvre les quatre dimensions fondamentales des architectures cloud mod
 ### 1. Cloner le Dépôt
 ```bash
 git clone https://github.com/SALHI-1/cloud-computing-project.git
-cd <cloud-computing-project>
+cd cloud-computing-project
 ```
 
 ### 2. Lancer la Simulation CloudSim Plus
