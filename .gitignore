@@ -94,3 +94,5 @@ Thumbs.db
 .project
 .classpath
 .settings/
+# --- HTML ---
+*.html
