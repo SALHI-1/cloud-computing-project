@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Rapport de Projet — Cloud Intelligence — Mohammed Salhi</title>
+<style>
+    @page {
+        size: A4;
+        margin: 20mm 15mm 20mm 15mm;
+        @bottom-right {
+            content: counter(page);
+        }
+    }
+    body {
+        font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+        color: #1e293b;
+        line-height: 1.6;
+        font-size: 11pt;
+        background-color: #ffffff;
+        margin: 0;
+        padding: 0;
+    }
+    .page-break {
+        page-break-before: always;
+    }
+    .no-break {
+        page-break-inside: avoid;
+    }
+    h1, h2, h3, h4 {
+        color: #0f172a;
+        font-weight: 700;
+    }
+    h1 {
+        font-size: 20pt;
+        border-bottom: 2px solid #2563eb;
+        padding-bottom: 6px;
+        margin-top: 24pt;
+        margin-bottom: 14pt;
+        color: #1e3a8a;
+    }
+    h2 {
+        font-size: 14pt;
+        color: #1e40af;
+        margin-top: 18pt;
+        margin-bottom: 8pt;
+        border-bottom: 1px solid #cbd5e1;
+        padding-bottom: 4px;
+    }
+    h3 {
+        font-size: 12pt;
+        color: #0369a1;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
+    }
+    p {
+        margin-top: 4pt;
+        margin-bottom: 8pt;
+        text-align: justify;
+    }
+    ul, ol {
+        margin-top: 4pt;
+        margin-bottom: 10pt;
+        padding-left: 20px;
+    }
+    li {
+        margin-bottom: 4pt;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10pt;
+        margin-bottom: 14pt;
+        font-size: 9.5pt;
+        page-break-inside: avoid;
+    }
+    th, td {
+        border: 1px solid #cbd5e1;
+        padding: 6px 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        font-weight: 600;
+    }
+    tr:nth-child(even) {
+        background-color: #f8fafc;
+    }
+    .img-container {
+    text-align: center;
+    margin: 8px 0;
+}
+    .img-container img {
+        max-width: 160mm;
+        max-height: 85mm;
+        width: auto;
+        height: auto;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    }
+    .img-container.large img {
+        max-height: 140mm;
+    }
+    .caption {
+        font-size: 9pt;
+        color: #64748b;
+        font-style: italic;
+        margin-top: 4pt;
+    }
+    .callout {
+        background-color: #f0fdf4;
+        border-left: 4px solid #16a34a;
+        padding: 10px 14px;
+        margin: 10px 0;
+        border-radius: 0 4px 4px 0;
+        font-size: 10pt;
+    }
+    .callout-info {
+        background-color: #eff6ff;
+        border-left: 4px solid #2563eb;
+        padding: 10px 14px;
+        margin: 10px 0;
+        border-radius: 0 4px 4px 0;
+        font-size: 10pt;
+    }
+    .callout-warning {
+        background-color: #fffbeb;
+        border-left: 4px solid #d97706;
+        padding: 10px 14px;
+        margin: 10px 0;
+        border-radius: 0 4px 4px 0;
+        font-size: 10pt;
+    }
+    code {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        padding: 2px 5px;
+        border-radius: 3px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 9.5pt;
+    }
+    pre {
+        background-color: #0f172a;
+        color: #f8fafc;
+        padding: 10px 14px;
+        border-radius: 4px;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 9pt;
+        overflow-x: auto;
+        margin: 10px 0;
+        line-height: 1.4;
+        page-break-inside: avoid;
+    }
+    /* Page de garde */
+    .cover-page {
+        text-align: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .univ-title {
+        font-size: 16pt;
+        font-weight: 700;
+        color: #1e3a8a;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    .faculty-title {
+        font-size: 13pt;
+        color: #475569;
+        margin-top: 5px;
+    }
+    .module-badge {
+        display: inline-block;
+        background-color: #dbeafe;
+        color: #1e40af;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 11pt;
+        font-weight: 600;
+        margin-top: 35px;
+    }
+    .project-title {
+        font-size: 26pt;
+        font-weight: 800;
+        color: #0f172a;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        line-height: 1.2;
+    }
+    .project-subtitle {
+        font-size: 13pt;
+        color: #64748b;
+        max-width: 650px;
+        margin: 0 auto;
+        line-height: 1.5;
+    }
+    .divider {
+        width: 100px;
+        height: 4px;
+        background-color: #2563eb;
+        margin: 35px auto;
+        border-radius: 2px;
+    }
+    .meta-box {
+        margin-top: 40px;
+        display: inline-block;
+        text-align: left;
+        background-color: #f8fafc;
+        border: 1px solid #e2e8f0;
+        padding: 20px 30px;
+        border-radius: 8px;
+    }
+    .meta-line {
+        margin: 6px 0;
+        font-size: 11pt;
+    }
+    .meta-label {
+        font-weight: 600;
+        color: #334155;
+        display: inline-block;
+        width: 190px;
+    }
+    .meta-val {
+        color: #0f172a;
+        font-weight: 500;
+    }
+    .academic-year {
+        margin-top: 60px;
+        font-size: 11pt;
+        color: #64748b;
+        font-weight: 600;
+    }
+</style>
+</head>
+<body>
+
+<!-- PAGE DE GARDE -->
+<div class="cover-page">
+    <div class="univ-title">Université Abdelmalek Essaâdi</div>
+    <div class="faculty-title">Faculté des Sciences et Techniques / École Nationale des Sciences Appliquées</div>
+    <div class="module-badge">Module : Cloud Computing & Systèmes Distribués</div>
+    
+    <div class="project-title">Rapport de Projet de Fin de Module<br><span style="color:#2563eb;">Cloud Intelligence</span></div>
+    
+    <div class="project-subtitle">
+        Simulation d'une Architecture Hybride Universitaire avec CloudSim Plus,
+        Déploiement IaaS/SaaS sur OpenStack DevStack,
+        Automatisation IaC avec Terraform & Ansible, et Supervision Proactive des Accords de Niveau de Service (SLA).
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="meta-box">
+        <div class="meta-line"><span class="meta-label">Réalisé par :</span><span class="meta-val" style="font-size:12pt; font-weight:700; color:#1e40af;">Mohammed SALHI</span></div>
+        <div class="meta-line"><span class="meta-label">Code Étudiant (CNE) :</span><span class="meta-val"><strong>R134235437</strong></span></div>
+        <div class="meta-line"><span class="meta-label">Sous la direction de :</span><span class="meta-val"><strong>Prof. C. EL AMRANI</strong></span></div>
+        <div class="meta-line"><span class="meta-label">Environnement :</span><span class="meta-val">Ubuntu 22.04 LTS · OpenStack 2024.1 · CloudSim Plus 8.0</span></div>
+    </div>
+
+    <div class="academic-year">Année Universitaire 2026 – 2027</div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- TABLE DES MATIÈRES -->
+<h1>Table des Matières</h1>
+<ol style="font-size: 11pt; line-height: 1.8;">
+    <li><strong>Introduction Générale</strong></li>
+    <li><strong>Partie 1. Simulation d'un Cloud Universitaire avec CloudSim Plus</strong>
+        <ol type="a">
+            <li>Documentation sur l'Université Abdelmalek Essaâdi (UAE)</li>
+            <li>Conception de l'Architecture Cloud Hybride (Pôles Tanger, Tétouan, Cloud Public)</li>
+            <li>Schéma Architectural Haute Définition</li>
+            <li>Modélisation des Charges Applicatives (Période Normale vs Période de Pointe)</li>
+            <li>Simulation CloudSim Plus et Comparaison des Politiques d'Ordonnancement et d'Allocation</li>
+            <li>Tableau Comparatif des Résultats et Analyse Détaillée des Métriques</li>
+            <li>Conclusion : Suffisance de l'Architecture en Période de Pointe</li>
+        </ol>
+    </li>
+    <li><strong>Partie 2. OpenStack : IaaS et SaaS</strong>
+        <ol type="a">
+            <li>Vérification de l'Installation DevStack et Description des Services Clés</li>
+            <li>Déploiement d'une Infrastructure IaaS avec CirrOS (Réseau, Routeur, Sécurité, Flottante, Ping & SSH)</li>
+            <li>Déploiement d'une Plateforme SaaS avec Ubuntu Server (Gabarit m1.saas, Initialisation Cloud, Application Web)</li>
+        </ol>
+    </li>
+    <li><strong>Partie 3. Infrastructure as Code : Terraform et Ansible</strong>
+        <ol type="a">
+            <li>Provisionnement Automatisé avec Terraform (Init, Plan, Apply, Destroy)</li>
+            <li>Gestion de Configuration et Déploiement Applicatif Nginx avec Ansible</li>
+            <li>Différence Fondamentale entre Provisionnement (Terraform) et Configuration (Ansible)</li>
+        </ol>
+    </li>
+    <li><strong>Partie 4. Gestion des SLA et Surveillance Continue en Python</strong>
+        <ol type="a">
+            <li>Formalisation du Contrat de Niveau de Service (SLA), Métriques et Formule de Disponibilité</li>
+            <li>Conception et Implémentation du Script de Surveillance Automatisé (sla_monitor.py)</li>
+            <li>Simulation d'Incident, Détection de Panne et Évaluation du Non-Respect du SLA</li>
+            <li>Calcul Mathématique Théorique : Tolérance aux Pannes sur un Cycle de 24 Heures (288 Mesures)</li>
+        </ol>
+    </li>
+    <li><strong>Conclusion Générale et Bilan des Livrables</strong></li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- INTRODUCTION GÉNÉRALE -->
+<h1>Introduction Générale</h1>
+<p>
+Le Cloud Computing est devenu le paradigme technologique incontournable pour les infrastructures numériques modernes, offrant mutualisation des ressources, agilité opérationnelle, élasticité et optimisation des coûts. Dans le contexte de l'enseignement supérieur marocain, la transformation digitale de l'<strong>Université Abdelmalek Essaâdi (UAE)</strong> impose des défis considérables : servir plus de 130 000 étudiants dispersés sur 5 villes de la région Tanger-Tétouan-Al Hoceïma, maintenir une haute disponibilité des services pédagogiques (Moodle, scolarité Apogée), tout en absorbant les pics d'afflux massifs lors des périodes d'inscriptions et d'examens.
+</p>
+<p>
+Ce projet, intitulé <strong>« Cloud Intelligence »</strong>, couvre l'intégralité du cycle de vie d'une infrastructure Cloud d'entreprise à travers quatre axes majeurs :
+</p>
+<ul>
+    <li><strong>Modélisation et Simulation (Partie 1) :</strong> Étude préliminaire et simulation sous <code>CloudSim Plus</code> d'une architecture Cloud Hybride pour l'UAE, comparant différentes stratégies d'allocation de machines virtuelles et d'ordonnancement de tâches sous forte charge.</li>
+    <li><strong>Déploiement IaaS et SaaS (Partie 2) :</strong> Mise en œuvre pratique sous <code>OpenStack (DevStack 2024.1 Caracal)</code> avec KVM, création d'un réseau privé routé, instanciation IaaS légère sous CirrOS et déploiement d'une application SaaS interactive multi-services sur Ubuntu Server.</li>
+    <li><strong>Infrastructure as Code (Partie 3) :</strong> Automatisation complète du provisionnement d'infrastructure avec <code>Terraform</code> et de la configuration système/applicative avec <code>Ansible</code>, garantissant reproductibilité et traçabilité.</li>
+    <li><strong>Gouvernance des SLA et Supervision (Partie 4) :</strong> Définition formelle d'un contrat de niveau de service (99,5 % de disponibilité), développement d'une sonde de surveillance continue en Python exploitant l'API OpenStack, et validation par injection de panne.</li>
+</ul>
+
+<div class="callout-info">
+<strong>Identification de l'Étudiant :</strong> L'ensemble des expérimentations, lignes de commande et captures d'écran présentées dans ce rapport ont été exécutées par <strong>Mohammed SALHI (CNE : R134235437)</strong> sur l'environnement de travail dédié <code>stack@salhi</code>.
+</div>
+
+<div class="page-break"></div>
+
+<!-- PARTIE 1 -->
+<h1>Partie 1. Simulation d'un Cloud Universitaire avec CloudSim Plus</h1>
+
+<h2>1. Documentation sur l'Université Abdelmalek Essaâdi (UAE)</h2>
+<p>
+Pour concevoir une architecture Cloud réaliste et adaptée aux contraintes de l'UAE, nous avons analysé sa structure organisationnelle, démographique et géographique.
+</p>
+
+<h3>A. Démographie et Effectifs</h3>
+<p>L'UAE constitue l'un des piliers universitaires majeurs du Royaume du Maroc. Les effectifs répertoriés sont :</p>
+<ul>
+    <li><strong>Population étudiante :</strong> <strong>130 750 étudiants</strong> inscrits dans l'ensemble des cycles.</li>
+    <li><strong>Corps professoral :</strong> <strong>1 357 enseignants-chercheurs</strong> permanents.</li>
+    <li><strong>Personnel administratif et technique :</strong> Environ <strong>600 cadres et agents</strong>.</li>
+    <li><strong>Total usagers actifs :</strong> Plus de <strong>132 700 comptes</strong> enregistrés.</li>
+</ul>
+<p><em>Sources officielles : Portail officiel UAE (www.uae.ac.ma) et statistiques du Ministère de l'Enseignement Supérieur (MESRSI).</em></p>
+
+<h3>B. Répartition Géographique (21 Établissements, 5 Villes)</h3>
+<table>
+    <thead>
+        <tr><th>Pôle Géographique</th><th>Nb Établissements</th><th>Liste des Établissements Rattachés</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>Tanger</strong></td><td>7</td><td>FST (Faculté des Sciences et Techniques), ENCG (École Nationale de Commerce et de Gestion), ENSA (École Nationale des Sciences Appliquées), FMPT (Faculté de Médecine et de Pharmacie), FSJP (Faculté des Sciences Juridiques et Politiques), FEG (Faculté d'Économie et de Gestion), ESRFT (École Supérieure Roi Fahd de Traduction).</td></tr>
+        <tr><td><strong>Tétouan / Martil</strong></td><td>7</td><td>Faculté des Sciences (FS Tétouan), FLSH (Faculté des Lettres et des Sciences Humaines), FSJES (Faculté des Sciences Juridiques, Économiques et Sociales), ENS (École Normale Supérieure), ENSA Tétouan, EST (École Supérieure de Technologie), FOD (Formation Ouverte et à Distance).</td></tr>
+        <tr><td><strong>Al Hoceïma</strong></td><td>5</td><td>ENSA Al Hoceïma, FST Al Hoceïma, FSJES Al Hoceïma, EST Al Hoceïma, ENCG Al Hoceïma.</td></tr>
+        <tr><td><strong>Larache</strong></td><td>1</td><td>Faculté Polydisciplinaire de Larache (FPL).</td></tr>
+        <tr><td><strong>Ksar El-Kébir</strong></td><td>1</td><td>Faculté Polydisciplinaire de Ksar El-Kébir (FPK).</td></tr>
+    </tbody>
+</table>
+
+<h3>C. Catalogue des Services Numériques</h3>
+<ul>
+    <li><strong>Portail Scolarité & ENT (SaaS) :</strong> Système Apogée pour les inscriptions, le suivi pédagogique et la publication des notes. Connaît un pic critique lors de la rentrée universitaire de septembre.</li>
+    <li><strong>Plateforme E-learning Moodle (SaaS) :</strong> Hébergement des cours, supports multimédias et travaux dirigés.</li>
+    <li><strong>Examens & QCM en ligne (SaaS) :</strong> Évaluations à distance, nécessitant une réactivité stricte sous forte affluence.</li>
+    <li><strong>Messagerie Institutionnelle & Bibliothèque Numérique (SaaS) :</strong> Comptes @etu.uae.ac.ma et bases documentaires.</li>
+    <li><strong>Bases de Données Relationnelles (PaaS) :</strong> SGBD Apogée contenant les dossiers scolaires confidentiels.</li>
+    <li><strong>Infrastructures de Recherche & TP (IaaS) :</strong> Machines virtuelles à la demande pour les écoles d'ingénieurs (ENSA, FST).</li>
+</ul>
+
+<h2>2. Conception de l'Architecture Cloud Hybride</h2>
+<p>
+Pour satisfaire les exigences de souveraineté des données tout en garantissant l'élasticité face aux pics, nous proposons une architecture de <strong>Cloud Hybride</strong> :
+</p>
+<ul>
+    <li><strong>Cloud Privé Souverain :</strong> Deux Datacenters interconnectés à Tanger (Campus Boukhalef) et Tétouan (Campus Martil) reliés par une liaison fibre 10 Gbps dédiée, assurant haute disponibilité et Plan de Reprise d'Activité (PRA).</li>
+    <li><strong>Cloud Public Débordé (*Cloud Bursting*) :</strong> Datacenter externe tiers activé à la demande via <code>HorizontalVmScaling</code> uniquement pour absorber les requêtes web excédentaires lors des périodes de pointe. Les bases de données restent <strong>100 % confinées dans le Cloud Privé</strong>.</li>
+</ul>
+
+<h3>Spécifications et Dimensionnement Matériel</h3>
+<ul>
+    <li><strong>Nombre de serveurs physiques (Hôtes) :</strong> <strong>12 serveurs</strong> (6 à Tanger, 6 à Tétouan).</li>
+    <li><strong>Caractéristiques par serveur :</strong> 2 CPU Intel Xeon Gold (<strong>32 cœurs</strong> à 2 600 MIPS), <strong>128 Go RAM</strong>, 12 To NVMe, 10 Gbps réseau.</li>
+    <li><strong>Capacité totale du Cloud Privé :</strong> 12 × 32 = <strong>384 cœurs physiques</strong> (998 400 MIPS) et <strong>1 536 Go de RAM</strong>.</li>
+    <li><strong>Seuil de sécurité d'élasticité (80 %) :</strong> Plafond fixé à 384 × 0.80 = <strong>307 cœurs max</strong> dans le privé. La réserve de 20 % (77 cœurs) est intouchable pour garantir le secours en cas de panne matérielle d'un hôte.</li>
+    <li><strong>Machines Virtuelles socles (Période Normale) :</strong> <strong>48 VMs</strong> consommant <strong>212 cœurs</strong> :
+        <ul>
+            <li>8 VMs Bases de données (8 cœurs, 32 Go) — PaaS/IaaS (4 Tanger + 4 Tétouan). <em>100 % privé souverain</em>.</li>
+            <li>16 VMs Moodle E-learning (4 cœurs, 16 Go) — SaaS.</li>
+            <li>6 VMs Portail ENT / Inscriptions (4 cœurs, 8 Go) — SaaS. Extensible dynamiquement en pointe.</li>
+            <li>4 VMs Examens en ligne (4 cœurs, 8 Go) — SaaS.</li>
+            <li>8 VMs Recherche Scientifique & DSI (4 cœurs, 16 Go) — IaaS.</li>
+            <li>6 VMs Messagerie & Bibliothèque (2 cœurs, 4 Go) — SaaS.</li>
+        </ul>
+    </li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>3. Schéma de l'Architecture Cloud Hybride (UAE)</h2>
+<div class="img-container large">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/partie1-simulation-cloudsim/uae_cloud_architecture.png" alt="Architecture Cloud Hybride UAE" style="width: 15.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 1.1 : Architecture Cloud Hybride de l'Université Abdelmalek Essaâdi — Mohammed Salhi (CNE : R134235437).</div>
+</div>
+
+<h2>4. Modélisation des Charges Applicatives (Cloudlets)</h2>
+<p>Dans <code>CloudSim Plus</code>, les requêtes utilisateurs sont modélisées par des <code>Cloudlet</code> mesurées en MI (*Millions d'Instructions*) :</p>
+<ul>
+    <li><strong>Période Normale (100 Cloudlets) :</strong> Modèle d'utilisation stochastique (<code>UtilizationModelStochastic</code>) simulant le trafic régulier (Moodle : 30, DSI : 10, Mail : 20, ENT : 20, Examens : 5, DB : 15). Requêtes interactives de 2 000 à 8 000 MI sur 1 vCPU.</li>
+    <li><strong>Période de Pointe (801 Cloudlets) :</strong> Modèle d'utilisation complète (<code>UtilizationModelFull</code>) simulant la saturation lors des inscriptions de rentrée et des examens. 140 requêtes ENT injectées à t=0 s pour saturer le cluster, suivies de 6 vagues successives de 90 Cloudlets ENT et 6 transactions DB au fil de l'horloge.</li>
+</ul>
+
+<h2>5. Simulation CloudSim Plus et Analyse des Résultats</h2>
+<p>
+Le code Java complet a été compilé et exécuté sous <code>CloudSim Plus 8.0.0</code>. Cinq scénarios ont été simulés pour comparer les politiques d'ordonnancement (<code>TimeShared</code> vs <code>SpaceShared</code>), d'allocation (<code>Simple</code> First-Fit vs <code>BestFit</code>) et l'élasticité dynamique (<code>HorizontalVmScaling</code>).
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Scénario / Configuration</th>
+            <th>Ordonnanceur</th>
+            <th>Alloc. VM</th>
+            <th>Makespan</th>
+            <th>Rép. Moy.</th>
+            <th>Attente</th>
+            <th>CPU Hôtes</th>
+            <th>VMs (Priv/Pub)</th>
+            <th>Cloudlets</th>
+            <th>Coût Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>1. Période Normale (Référence)</strong></td><td>TimeShared</td><td>Simple</td><td>44.11 s</td><td>6.75 s</td><td>0.00 s</td><td>1.9 %</td><td>48 (48 / 0)</td><td>100 / 100</td><td>$694.13</td></tr>
+        <tr><td><strong>2. Période de Pointe (Statique)</strong></td><td>TimeShared</td><td>Simple</td><td>108.12 s</td><td>25.77 s</td><td>0.00 s</td><td>8.5 %</td><td>48 (48 / 0)</td><td>801 / 801</td><td>$856.98</td></tr>
+        <tr><td><strong>3. Période de Pointe (Statique)</strong></td><td>SpaceShared</td><td>Simple</td><td>108.12 s</td><td>19.11 s</td><td>10.35 s</td><td>8.5 %</td><td>48 (48 / 0)</td><td>801 / 801</td><td>$856.98</td></tr>
+        <tr><td><strong>4. Période Normale (BestFit)</strong></td><td>TimeShared</td><td>BestFit</td><td>48.95 s</td><td>6.65 s</td><td>0.00 s</td><td>3.0 %</td><td>48 (48 / 0)</td><td>100 / 100</td><td>$706.44</td></tr>
+        <tr><td><strong>5. Période de Pointe (Élastique)</strong></td><td><strong>TimeShared</strong></td><td><strong>BestFit</strong></td><td><strong>108.01 s</strong></td><td><strong>10.30 s</strong></td><td><strong>0.00 s</strong></td><td><strong>8.2 %</strong></td><td><strong>98 (71 / 27)</strong></td><td><strong>801 / 801</strong></td><td><strong>$3 520.04</strong></td></tr>
+    </tbody>
+</table>
+
+<div class="callout">
+<strong>Performances sur le Service en Pointe (Inscriptions & ENT - 680 Cloudlets) :</strong><br>
+• Période Normale : <strong>2.62 s</strong> de temps de réponse moyen (expérience utilisateur fluide).<br>
+• Pointe Statique (48 VMs) : <strong>27.21 s</strong> (saturation sévère, latence multipliée par <strong>10.4×</strong>).<br>
+• Pointe Élastique (98 VMs) : <strong>8.98 s</strong> (chute spectaculaire de <strong>67 %</strong> de la latence grâce à l'auto-scaling et au Cloud Bursting).
+</div>
+
+<h3>Analyse Détaillée et Conclusion</h3>
+<ul>
+    <li><strong>TimeShared vs SpaceShared :</strong> En mode <code>SpaceShared</code>, les cœurs CPU sont monopolisés de manière exclusive, engendrant un temps d'attente moyen bloquant de <strong>10.35 s</strong> (et 12.13 s sur l'ENT). Le mode <code>TimeShared</code> garantit un temps d'attente nul (0.00 s) et s'impose pour des applications web interactives.</li>
+    <li><strong>Simple vs BestFit :</strong> <code>BestFit</code> concentre l'allocation sur les serveurs physiques les plus chargés pour maximiser la consolidation des ressources, permettant d'éteindre les serveurs vides pour économiser l'énergie.</li>
+    <li><strong>Analyse Financière (Capex vs Opex) :</strong> Le débordement public génère un coût d'usage temporaire de 2 395.72 $, infiniment plus économique que d'acheter 27 serveurs physiques à l'année (plus de 80 000 $ en Capex) qui resteraient inutilisés 11 mois sur 12.</li>
+    <li><strong>Conclusion formelle : L'architecture proposée suffit-elle en pointe ?</strong><br>
+    - <strong>En Cloud Privé seul : NON.</strong> Avec 384 cœurs et un seuil de sécurité à 80 % (307 cœurs max), la capacité d'élasticité locale n'est que de 95 cœurs (~23 VMs). Or, le pic exige +50 VMs (200 cœurs).<br>
+    - <strong>En Cloud Hybride avec élasticité : OUI, PARFAITEMENT.</strong> Le système absorbe 23 VMs dans le privé (atteignant 71 VMs privées et 304 cœurs, restant sous le seuil critique), et déporte les 27 VMs restantes sur le Cloud Public. 100 % des requêtes sont honorées et la latence est maîtrisée à 8.98 s.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- PARTIE 2 -->
+<h1>Partie 2. OpenStack : IaaS et SaaS</h1>
+
+<h2>1. Vérification de l'Installation DevStack</h2>
+<p>
+L'environnement OpenStack (DevStack 2024.1 Caracal avec hyperviseur KVM matériel) a été vérifié à la fois via le tableau de bord web Horizon et via l'interface en ligne de commande (CLI).
+</p>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_01_horizon_overview.png" alt="OpenStack Horizon Overview" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.1 : Accès et aperçu général de la console Web OpenStack Horizon (http://192.168.122.146/dashboard).</div>
+</div>
+
+<p>Les services fondamentaux d'OpenStack ont été vérifiés via les commandes CLI suivantes :</p>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_02_openstack_service_list.png" alt="openstack service list" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.2 : Exécution de <code>openstack service list</code> affichant les services d'API actifs.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_03_compute_service_list.png" alt="openstack compute service list" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.3 : Exécution de <code>openstack compute service list</code> confirmant l'état actif des composants Nova.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_04_network_agent_list.png" alt="openstack network agent list" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.4 : Exécution de <code>openstack network agent list</code> confirmant le contrôleur réseau OVN.</div>
+</div>
+
+<h3>Rôle de chaque composant OpenStack (en une phrase) :</h3>
+<ul>
+    <li><strong>Keystone (Identity) :</strong> Assure l'authentification centrale, la gestion des utilisateurs, des projets (tenants) et fournit le catalogue des points de terminaison (endpoints) de tous les services.</li>
+    <li><strong>Nova (Compute) :</strong> Gère le cycle de vie complet des instances de machines virtuelles (planification, création, démarrage, redémarrage et destruction sur l'hyperviseur KVM).</li>
+    <li><strong>Glance (Image Service) :</strong> Stocke, catalogue et distribue les images disques de systèmes d'exploitation (CirrOS, Ubuntu Cloud Image) prêtes à être instanciées.</li>
+    <li><strong>Neutron (Networking) :</strong> Fournit la virtualisation réseau en mode SDN (Software-Defined Networking), incluant la gestion des réseaux privés, sous-réseaux, routeurs virtuels, ports et adresses IP flottantes.</li>
+    <li><strong>Placement :</strong> Suit avec précision l'utilisation des ressources matérielles physiques (cœurs CPU, RAM, disques) et oriente l'ordonnanceur de Nova vers l'hôte optimal.</li>
+    <li><strong>Cinder (Block Storage) :</strong> Fournit du stockage par blocs persistant et attaché à chaud aux machines virtuelles sous forme de volumes virtuels.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h2>2. Déploiement IaaS avec CirrOS</h2>
+<p>
+Pour valider le modèle Infrastructure as a Service (IaaS), nous avons mis en place une infrastructure réseau complète isolée, instancié une machine virtuelle légère CirrOS et validé sa connectivité.
+</p>
+
+<h3>A. Création du Réseau, Sous-Réseau et Routeur</h3>
+<p>Création du réseau privé <code>iaas-net</code> et du sous-réseau <code>iaas-subnet</code> en 192.168.10.0/24 :</p>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_05_network_create_iaas_net.png" alt="openstack network create" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.5 : Création du réseau virtuel privé <code>iaas-net</code>.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_06_subnet_create_iaas_subnet.png" alt="openstack subnet create" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.6 : Création du sous-réseau <code>iaas-subnet</code> (192.168.10.0/24 avec DNS 8.8.8.8).</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_07_router_create_and_gateway.png" alt="openstack router create and configure" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.7 : Création du routeur virtuel <code>iaas-router</code>, liaison à la passerelle <code>public</code> et rattachement au sous-réseau privé.</div>
+</div>
+
+<h3>B. Groupe de Sécurité et Clé SSH</h3>
+<p>Configuration du groupe de sécurité <code>secgroup-iaas</code> autorisant les flux entrants ICMP (ping) et SSH (port 22) :</p>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_08_secgroup_iaas_icmp.png" alt="secgroup icmp" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.8 : Création du groupe de sécurité <code>secgroup-iaas</code> et ouverture du trafic ICMP.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_09_secgroup_iaas_ssh.png" alt="secgroup ssh" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.9 : Ajout de la règle autorisant les connexions SSH sur le port 22 en entrée.</div>
+</div>
+
+<div class="page-break"></div>
+
+<h3>C. Génération de Clé, Instanciation et Attribution d'IP Flottante</h3>
+<p>Création de la paire de clés <code>cirros-key</code>, instanciation de <code>cirros-instance</code> et allocation de l'IP flottante <code>172.24.4.68</code> :</p>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_10_keypair_create_cirros_key.png" alt="keypair create" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.10 : Génération de la paire de clés SSH <code>cirros-key</code> et restriction des droits (chmod 600).</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_11_server_create_cirros_instance.png" alt="server create cirros" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.11 : Lancement de l'instance CirrOS avec gabarit <code>m1.tiny</code>.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_12_floating_ip_associate_cirros.png" alt="floating ip associate cirros" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.12 : Création et association de l'IP flottante <code>172.24.4.68</code> sur <code>cirros-instance</code>.</div>
+</div>
+
+<h3>D. Tests de Connectivité (Ping & SSH) et Topologie Réseau Horizon</h3>
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_13_ping_and_ssh_tests.png" alt="ping and ssh cirros" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.13 : Validation réussie des tests de connectivité : Ping 0% packet loss et connexion SSH avec exécution de <code>uname -a</code>.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape1_14_horizon_network_topology.png" alt="Horizon Network Topology" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.14 : Topologie réseau complète visualisée sur Horizon (Réseau public externe, Routeur iaas-router, Réseau privé iaas-net, et instances connectées).</div>
+</div>
+
+<div class="page-break"></div>
+
+<h2>3. Déploiement SaaS avec Ubuntu Server</h2>
+<p>
+Conformément aux conseils du sujet, nous avons créé un gabarit adapté <code>m1.saas</code> (1 536 Mo RAM, 10 Go disque, 1 vCPU) et déployé une application web SaaS interactive développée sous Flask et stylisée avec Bootstrap 5.
+</p>
+
+<h3>A. Création du Gabarit et Règles de Sécurité</h3>
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape2_01_flavor_create_m1_saas.png" alt="flavor create and secgroup" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.15 : Création du gabarit <code>m1.saas</code> et du groupe de sécurité <code>secgroup-saas</code>.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape2_02_secgroup_saas_icmp.png" alt="secgroup icmp saas" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.16 : Autorisation du protocole ICMP sur <code>secgroup-saas</code>.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape2_03_secgroup_saas_ssh_http.png" alt="secgroup port 22 and 80" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.17 : Ouverture des ports 22 (SSH) et 80 (HTTP) pour le trafic web.</div>
+</div>
+
+<h3>B. Lancement de l'Instance avec Initialisation Automatisée (Cloud-Init)</h3>
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape2_04_server_create_saas_instance.png" alt="server create saas" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.18 : Déploiement de <code>saas-instance</code> avec injection du script <code>user-data-saas.sh</code>.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape2_05_floating_ip_associate_saas.png" alt="floating ip saas" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.19 : Attribution de l'IP flottante SaaS <code>172.24.4.154</code>.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape2_06_server_list_active.png" alt="openstack server list" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.20 : État des instances actives sous OpenStack : <code>cirros-instance</code> et <code>saas-instance</code>.</div>
+</div>
+
+<div class="page-break"></div>
+
+<h3>C. Application SaaS Ouverte dans le Navigateur</h3>
+<p>
+L'application SaaS interactive est accessible depuis le navigateur web à l'adresse <code>http://192.168.122.146:8080</code> (via redirection sur l'IP flottante <code>172.24.4.154:80</code>) :
+</p>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie2/partie2_etape2_07_saas_web_application_browser.png" alt="Application SaaS Navigateur" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 2.21 : Interface de la plateforme SaaS « Cloud Intelligence » affichant les services déployés (Nextcloud, Base de Données, Analytics, Surveillance SLA).</div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PARTIE 3 -->
+<h1>Partie 3. Infrastructure as Code : Terraform et Ansible</h1>
+
+<h2>1. Provisionnement avec Terraform</h2>
+<p>
+L'Infrastructure as Code (IaC) permet de décrire l'infrastructure de manière déclarative. À l'aide du fournisseur officiel <code>terraform-provider-openstack</code>, nous avons automatisé la création d'un groupe de sécurité (SSH et HTTP), d'une instance Ubuntu Server et d'une adresse IP flottante.
+</p>
+
+<h3>Cycle de vie Terraform exécuté :</h3>
+<ol>
+    <li><code>terraform init</code> : Téléchargement et initialisation du plugin OpenStack.</li>
+    <li><code>terraform plan</code> : Prévisualisation des 7 ressources à créer (Figure 3.1).</li>
+    <li><code>terraform apply -auto-approve</code> : Provisionnement effectif des composants OpenStack (Figures 3.2 et 3.3).</li>
+    <li><code>terraform destroy</code> : Destruction propre des ressources à la fin du laboratoire.</li>
+</ol>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie3/partie3_01_terraform_plan.png" alt="terraform plan" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 3.1 : Exécution de <code>terraform plan</code> détaillant les ressources calcul, réseau et sécurité à provisionner.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie3/partie3_02_terraform_apply_start.png" alt="terraform apply start" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 3.2 : Lancement de <code>terraform apply -auto-approve</code>.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie3/partie3_03_terraform_apply_complete_outputs.png" alt="terraform apply complete" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 3.3 : Succès de <code>terraform apply</code> : 7 ressources ajoutées et extraction de l'IP flottante <code>172.24.4.36</code>.</div>
+</div>
+
+<div class="page-break"></div>
+
+<h2>2. Configuration et Déploiement avec Ansible</h2>
+<p>
+Une fois l'infrastructure provisionnée par Terraform, <strong>Ansible</strong> intervient pour configurer le système d'exploitation de l'instance de manière idempotente sans agent (via SSH).
+Le playbook <code>playbook.yml</code> réalise les actions suivantes :
+</p>
+<ul>
+    <li>Mise à jour du cache <code>apt</code> et installation du serveur web <strong>Nginx</strong>.</li>
+    <li>Démarrage et activation du service <code>nginx</code> au démarrage système.</li>
+    <li>Déploiement d'une page web personnalisée affichant le nom de l'étudiant (<strong>Mohammed SALHI</strong>), le CNE (<strong>R134235437</strong>) et le nom de l'hôte (<code>ubuntu-terraform</code>).</li>
+</ul>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie3/partie3_04_ansible_playbook_execution.png" alt="ansible playbook execution" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 3.4 : Exécution sans erreur du playbook Ansible (<code>ok=4 changed=2 failed=0</code>).</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie3/partie3_05_nginx_web_page_browser.png" alt="Page Web Nginx personnalisee" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 3.5 : Page Web personnalisée servie par Nginx confirmant le déploiement automatisé au nom de Mohammed Salhi (R134235437).</div>
+</div>
+
+<h2>3. Différence Fondamentale entre Terraform et Ansible</h2>
+<table>
+    <thead>
+        <tr><th>Critère de Comparaison</th><th>Terraform (Provisionnement)</th><th>Ansible (Gestion de Configuration)</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>Rôle Principal</strong></td><td><strong>Orchestrateur & Provisionneur d'Infrastructure :</strong> Crée, modifie et détruit les ressources Cloud brutes (réseaux, routeurs, instances, volumes, groupes de sécurité).</td><td><strong>Gestionnaire de Configuration :</strong> Installe les logiciels, configure les services système, gère les fichiers de configuration et déploie les applications sur des serveurs existants.</td></tr>
+        <tr><td><strong>Paradigme & Approche</strong></td><td><strong>Déclaratif pur :</strong> On décrit l'état final désiré (ex : « Je veux une VM Ubuntu »). Terraform calcule le graphe de dépendances et applique le plan.</td><td><strong>Hybride / Procédural-Déclaratif :</strong> Décrit une suite ordonnée de tâches (tasks) exécutées séquentiellement dans un playbook.</td></tr>
+        <tr><td><strong>Gestion de l'État (State)</strong></td><td>Maintient un fichier d'état critique (<code>terraform.tfstate</code>) pour mapper le code avec la réalité de l'infrastructure.</td><td>Sans état (stateless) : Interroge directement la machine cible à chaque exécution.</td></tr>
+        <tr><td><strong>Complémentarité</strong></td><td colspan="2"><strong>Terraform construit les fondations (le contenant), Ansible meuble et configure l'intérieur (le contenu).</strong></td></tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<!-- PARTIE 4 -->
+<h1>Partie 4. Gestion des SLA et Surveillance Continue en Python</h1>
+
+<h2>1. Formalisation du Contrat SLA et Métriques</h2>
+<p>
+Le contrat de niveau de service (SLA) formalisé dans <code>sla.json</code> engage le fournisseur Cloud sur un objectif de haute disponibilité de <strong>99,5 %</strong>.
+</p>
+
+<h3>A. Métriques de Contrôle et Formule de Disponibilité</h3>
+<p>Une instance est déclarée <strong>DISPONIBLE</strong> à l'instant $t$ si et seulement si les deux conditions cumulatives suivantes sont vérifiées :</p>
+<ol>
+    <li>L'état de l'instance dans le plan de contrôle Nova est strictement égal à <code>ACTIVE</code>.</li>
+    <li>L'instance répond avec succès aux requêtes d'écho ICMP (Ping) sur son adresse IP flottante.</li>
+</ol>
+<p>La disponibilité globale $A$ sur une période d'observation comportant $N$ mesures est calculée selon la formule :</p>
+<p style="text-align: center; font-size: 13pt; font-weight: 700; color: #1e40af;">
+    A = ( Nombre de Mesures Disponibles / Nombre Total de Mesures ) × 100
+</p>
+
+<h2>2. Réalisation du Script de Surveillance (sla_monitor.py)</h2>
+<p>
+Développé en Python avec le SDK officiel <code>openstacksdk</code>, le script <code>sla_monitor.py</code> réalise une boucle de surveillance périodique (toutes les 5 secondes en test). À chaque itération, il interroge Nova, teste le ping, calcule la disponibilité cumulée, affiche l'état en temps réel avec coloration syntaxique, enregistre chaque point dans <code>sla_measures.csv</code> et génère le rapport certifié <code>sla_report.json</code>.
+</p>
+
+<h2>3. Simulation d'Incident, Détection de Panne et Évaluation du SLA</h2>
+<p>
+Pour valider le moniteur, nous avons injecté une panne en arrêtant volontairement l'instance <code>cirros-instance</code> pendant la surveillance, avant de la redémarrer.
+</p>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie4/partie4_01_sla_monitor_failure_detection.png" alt="sla monitor execution and failure detection" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 4.1 : Détection immédiate de la panne par <code>sla_monitor.py</code> : basculement en rouge « INDISPONIBLE (PANNE) » et chute du SLA sous les 99,5 % (jusqu'à 88,18 %).</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie4/partie4_02_server_stop_start_injection.png" alt="openstack server stop and start" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 4.2 : Commandes d'injection de panne (<code>server stop</code>) et de rétablissement (<code>server start</code>).</div>
+</div>
+
+<div class="page-break"></div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie4/partie4_03_sla_measures_csv.png" alt="sla measures csv" style="width: 14.5cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 4.3 : Fichier d'historique <code>sla_measures.csv</code> traçant la chronologie complète de l'incident.</div>
+</div>
+
+<div class="img-container">
+    <img src="/mnt/Linux_Sdata/openstack-cloud/screenshots/partie4/partie4_04_sla_report_json.png" alt="sla report json" style="width: 12cm; height: auto; max-width: 98%; border: 1px solid #cbd5e1; border-radius: 4px;">
+    <div class="caption">Figure 4.4 : Rapport d'audit final <code>sla_report.json</code> constatant une disponibilité de 89,68 % et déclarant le non-respect du contrat SLA.</div>
+</div>
+
+<h2>4. Calcul Mathématique Théorique du SLA</h2>
+<div class="callout-warning">
+<strong>Question posée dans l'énoncé :</strong><br>
+<em>« Pour un contrôle toutes les 5 minutes sur 24 heures (288 mesures), combien de mesures en échec sont tolérées pour maintenir l'objectif de 99,5 % ? »</em>
+</div>
+
+<h3>Démonstration et Calcul Rigoureux :</h3>
+<ol>
+    <li><strong>Nombre total d'intervalles de mesure sur 24 heures :</strong><br>
+        Durée totale de surveillance : <code>T<sub>total</sub> = 24 heures &times; 60 minutes = 1 440 minutes</code><br>
+        Fréquence des vérifications : 1 contrôle toutes les 5 minutes.<br>
+        Nombre total de mesures réalisées :
+        <div style="text-align: center; margin: 8px 0; font-size: 11pt; font-weight: bold; color: #1e3a8a;">
+            N = 1 440 minutes / 5 minutes = 288 mesures
+        </div>
+    </li>
+    <li><strong>Seuil minimal de mesures conformes pour respecter le contrat (99,5 %) :</strong><br>
+        Pour respecter le SLA, la disponibilité <code>A</code> doit satisfaire l'inéquation :
+        <div style="text-align: center; margin: 8px 0; font-size: 11pt; font-weight: bold; color: #1e3a8a;">
+            A = (M<sub>succès</sub> / 288) &ge; 0,995 &rArr; M<sub>succès</sub> &ge; 288 &times; 0,995 = 286,56 mesures
+        </div>
+        Puisque le nombre de mesures réussies est obligatoirement un nombre entier, la valeur minimale requise est arrondie à l'entier supérieur :
+        <div style="text-align: center; margin: 8px 0; font-size: 11pt; font-weight: bold; color: #15803d;">
+            M<sub>succès_min</sub> = 287 mesures conformes
+        </div>
+    </li>
+    <li><strong>Nombre maximal de mesures en échec tolérées :</strong><br>
+        <div style="text-align: center; margin: 8px 0; font-size: 12pt; font-weight: bold; color: #b91c1c;">
+            Tolérance Max = 288 - 287 = 1 SEULE MESURE EN ÉCHEC TOLÉRÉE
+        </div>
+    </li>
+    <li><strong>Validation arithmétique comparative :</strong>
+        <ul>
+            <li><strong>Cas 1 : Avec 1 seule mesure en échec (287 succès sur 288) :</strong><br>
+                <code>Disponibilité = (287 / 288) &times; 100 = <strong>99,65 %</strong> &ge; 99,5 % &rArr; <strong>OBJECTIF SLA RESPECTÉ</strong></code>
+            </li>
+            <li><strong>Cas 2 : Dès 2 mesures en échec (286 succès sur 288) :</strong><br>
+                <code>Disponibilité = (286 / 288) &times; 100 = <strong>99,31 %</strong> &lt; 99,5 % &rArr; <strong>RUPTURE DU SLA (PÉNALITÉS)</strong></code>
+            </li>
+        </ul>
+    </li>
+</ol>
+<p>
+<strong>Conclusion :</strong> Sur une journée entière (24 heures), <strong>au maximum UNE SEULE mesure en échec est tolérée</strong> (soit un temps d'indisponibilité cumulé maximal de <strong>5 à 7,2 minutes</strong>). Dès la seconde mesure échouée (10 minutes d'arrêt), le contrat de niveau de service est officiellement rompu.
+</p>
+
+<div class="page-break"></div>
+
+<!-- CONCLUSION GÉNÉRALE -->
+<h1>Conclusion Générale et Bilan du Projet</h1>
+<p>
+Ce projet de fin de module a permis de couvrir avec rigueur et méthode l'ensemble des dimensions de l'ingénierie Cloud Computing :
+</p>
+<ol>
+    <li><strong>Simulation sous CloudSim Plus (Partie 1) :</strong> Nous avons dimensionné une architecture Cloud Hybride pour l'Université Abdelmalek Essaâdi (12 hôtes, 384 cœurs, 48 VMs de base). Les simulations ont démontré qu'en période de pointe (rentrée universitaire de septembre avec 801 Cloudlets), le Cloud Privé seul ne peut suffire sans compromettre la sécurité (seuil de 80 %). L'adoption du Cloud Bursting vers le Cloud Public (+27 VMs) permet d'absorber 100 % des requêtes en divisant la latence par 3 (8.98 s contre 27.21 s en statique), tout en garantissant la souveraineté stricte des données sensibles de la scolarité.</li>
+    <li><strong>Mise en œuvre OpenStack (Partie 2) :</strong> Nous avons déployé et maîtrisé une infrastructure IaaS complète sous OpenStack (Neutron OVN, Nova KVM, Keystone) avec validation de la connectivité réseau et instanciation d'une application SaaS multi-services conteneurisée sur Ubuntu Server.</li>
+    <li><strong>Automatisation Terraform & Ansible (Partie 3) :</strong> L'Infrastructure as Code a permis de provisionner en une commande l'ensemble des ressources cloud et de configurer automatiquement un serveur Nginx servant une page web personnalisée au nom de l'étudiant.</li>
+    <li><strong>Supervision et Garanties SLA (Partie 4) :</strong> La formalisation d'un contrat de niveau de service et le développement d'un agent de supervision Python ont permis de mesurer en direct la réactivité de l'infrastructure et de tracer précisément les incidents d'indisponibilité.</li>
+</ol>
+
+<div class="callout">
+<strong>Livrables Fournis :</strong><br>
+1. <strong>Rapport d'Ingénierie Complet :</strong> <code>Salhi_Mohammed_Rapport.pdf</code> intégrant l'ensemble des analyses, schémas, formules et captures d'écran certifiées.<br>
+2. <strong>Archive Numérique des Codes Sources :</strong> <code>Salhi_Mohammed_Code.zip</code> contenant les codes sources Java CloudSim Plus, les scripts d'initialisation SaaS, les configurations Terraform/Ansible, le contrat SLA et l'agent de supervision Python.
+</div>
+
+</body>
+</html>

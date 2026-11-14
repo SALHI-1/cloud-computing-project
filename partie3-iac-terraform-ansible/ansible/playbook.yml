@@ -1,0 +1,83 @@
+---
+- name: Configuration du serveur Web Nginx (Partie 3)
+  hosts: all
+  become: yes
+  tasks:
+    - name: Mettre a jour le cache apt et installer Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Demarrer et activer le service Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deployer la page web personnalisee
+      copy:
+        dest: /var/www/html/index.html
+        content: |
+          <!DOCTYPE html>
+          <html lang="fr">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Partie 3 - Infrastructure as Code</title>
+              <style>
+                  body {
+                      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                      background: linear-gradient(135deg, #1d2671 0%, #c33764 100%);
+                      color: #fff;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      min-height: 100vh;
+                      margin: 0;
+                  }
+                  .card {
+                      background: rgba(255, 255, 255, 0.95);
+                      color: #333;
+                      padding: 40px;
+                      border-radius: 16px;
+                      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                      max-width: 600px;
+                      width: 90%;
+                      text-align: center;
+                  }
+                  h1 { color: #1d2671; margin-bottom: 20px; font-size: 1.8rem; }
+                  .info-box {
+                      background: #f8f9fa;
+                      border-left: 5px solid #1d2671;
+                      margin: 20px 0;
+                      padding: 18px;
+                      text-align: left;
+                      border-radius: 6px;
+                      font-size: 1.05rem;
+                      line-height: 1.8;
+                  }
+                  .badge {
+                      background: #28a745;
+                      color: white;
+                      padding: 4px 10px;
+                      border-radius: 20px;
+                      font-size: 0.85em;
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="card">
+                  <h1>🎓 Cloud Intelligence — Partie 3</h1>
+                  <p><strong>Infrastructure as Code avec Terraform & Ansible</strong></p>
+                  <div class="info-box">
+                      <div><strong>👤 Nom de l'étudiant :</strong> mohammed salhi</div>
+                      <div><strong>🆔 Numéro d'étudiant :</strong> R134235437</div>
+                      <div><strong>🖥️ Nom de l'instance :</strong> {{ ansible_hostname }}</div>
+                      <div><strong>⚙️ Serveur Web :</strong> Nginx <span class="badge">Actif</span></div>
+                  </div>
+                  <p style="font-size: 0.9em; color: #666;">Université Abdelmalek Essaâdi — Déploiement automatisé</p>
+              </div>
+          </body>
+          </html>
+        mode: '0644'

@@ -1,0 +1,16 @@
+{
+  "rapport_surveillance": {
+    "etudiant": "mohammed salhi (R134235437)",
+    "date_debut": "2026-11-13 20:42:04",
+    "date_fin": "2026-11-13 20:53:15",
+    "duree_secondes": 670,
+    "instance_surveillee": "cirros-instance",
+    "nombre_total_mesures": 126,
+    "mesures_disponibles": 113,
+    "mesures_en_echec": 13,
+    "disponibilite_obtenue_pct": 89.68,
+    "objectif_sla_pct": 99.5,
+    "objectif_respecte": false,
+    "conclusion": "Objectif SLA NON respecte (panne detectee, disponibilite en baisse)"
+  }
+}

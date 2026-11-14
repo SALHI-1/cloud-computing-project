@@ -1,0 +1,46 @@
+{
+  "sla_contract": {
+    "title": "Service Level Agreement (SLA) - Disponibilite des Instances OpenStack",
+    "institution": "Universite Abdelmalek Essaadi",
+    "project": "Cloud Intelligence - Master Cloud Computing",
+    "author": "mohammed salhi (R134235437)",
+    "version": "1.0",
+    "date": "2026-11-13"
+  },
+  "scope": {
+    "description": "Instances virtuelles deployees sur l'infrastructure IaaS OpenStack (DevStack)",
+    "monitored_instances": [
+      "cirros-instance"
+    ]
+  },
+  "objectives": {
+    "target_availability_percentage": 99.5,
+    "evaluation_period": "Quotidienne (24 heures) ou session de supervision",
+    "measurement_frequency_minutes": 5,
+    "max_allowed_failures_daily": 1,
+    "max_downtime_minutes_daily": 7.2
+  },
+  "metric_definition": {
+    "definition": "Une instance est definie comme 'DISPONIBLE' si son statut Nova est ACTIVE, son power_state est Running, et qu'elle repond au test reseau (Ping ICMP). Si l'une de ces conditions echoue, la mesure est marquee comme 'INDISPONIBLE'.",
+    "formula": "Disponibilite (%) = (Nombre de mesures DISPONIBLE / Nombre total de mesures) * 100"
+  },
+  "penalties": {
+    "availability_above_99_5": "Objectif respecte - Aucune penalite",
+    "availability_99_0_to_99_4": "Penalite de 10% de remise sur la facture de service",
+    "availability_below_99_0": "Penalite de 25% de remise sur la facture de service"
+  },
+  "rapport_surveillance_final": {
+    "etudiant": "mohammed salhi (R134235437)",
+    "date_debut": "2026-11-13 20:42:04",
+    "date_fin": "2026-11-13 20:53:15",
+    "duree_secondes": 670,
+    "instance_surveillee": "cirros-instance",
+    "nombre_total_mesures": 126,
+    "mesures_disponibles": 113,
+    "mesures_en_echec": 13,
+    "disponibilite_obtenue_pct": 89.68,
+    "objectif_sla_pct": 99.5,
+    "objectif_respecte": false,
+    "conclusion": "Objectif SLA NON respecte (panne detectee, disponibilite en baisse)"
+  }
+}
